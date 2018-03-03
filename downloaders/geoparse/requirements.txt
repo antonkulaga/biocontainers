@@ -1,0 +1,4 @@
+-e git://github.com/guma44/GEOparse.git#egg=GEOparse
+biopython
+pyfunctional
+click
