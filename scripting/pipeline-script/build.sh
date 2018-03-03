@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-docker build -t quay.io/comp-bio-aging/ammonite:latest .
+docker build -t quay.io/comp-bio-aging/pipeline-script:latest .

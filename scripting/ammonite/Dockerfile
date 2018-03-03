@@ -6,6 +6,4 @@ ENV AMM_VERSION 1.0.5
 
 RUN curl -L -o /usr/local/bin/amm https://git.io/vASZm && chmod +x /usr/local/bin/amm
 
-RUN echo 'import $ivy.`com.lihaoyi::ammonite-ops:${AMM_VERSION}`, ammonite.ops._\n\' > /root/.ammonite/predef.sc
-
 RUN echo 'println("Hello ammonite!")' > /data/hw.scala /usr/local/bin/amm hw.scala 2>/dev/null a && rm -rf hw.scala
