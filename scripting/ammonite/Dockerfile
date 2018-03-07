@@ -2,8 +2,6 @@ FROM quay.io/comp-bio-aging/scala:latest
 
 LABEL maintainer="antonkulaga@gmail.com"
 
-USER root
-
 ENV AMM_VERSION 1.0.5
 
 RUN curl -L -o /usr/local/bin/amm https://git.io/vASZm && chmod +x /usr/local/bin/amm

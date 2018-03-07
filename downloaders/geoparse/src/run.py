@@ -15,7 +15,7 @@ from functional import seq
 @click.option('--keep_sra', default=True, type=bool, help='if we should keep sra after downloading')
 @click.option('--header', default=False, type=bool, help='if header should present in output.tsv')
 @click.argument('samples', nargs=-1, required=True)
-def download(location: str, filetype: str, keep_sra: bool, samples):
+def download(location: str, filetype: str, keep_sra: bool, header, samples):
     # for instance location series GSM1696283 GSM1696284
     fastq_dump_options = {
         'skip-technical': None,
