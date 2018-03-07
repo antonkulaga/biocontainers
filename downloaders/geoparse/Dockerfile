@@ -5,7 +5,7 @@ MAINTAINER Anton Kulaga antonkulaga@gmail.com
 #installing mypy
 RUN python3 -m pip install -U mypy
 
-COPY requirements.txt ./
+COPY src/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 RUN mkdir /opt/geoparse

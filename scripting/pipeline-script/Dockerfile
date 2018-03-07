@@ -1,6 +1,6 @@
 FROM quay.io/comp-bio-aging/ammonite:latest
 
-LABEL maintainer "antonkulaga@gmail.com"
+LABEL maintainer="antonkulaga@gmail.com"
 
 ADD predefShared.sc /root/.ammonite/
 
