@@ -31,7 +31,11 @@ def download(location: str, filetype: str, keep_sra: bool, samples):
         'filetype': filetype,
         "fastq_dump_options": fastq_dump_options
     }
-    return download_gsms(list(samples), sra_kwargs, location).to_csv(os.path.join(location, "output.tsv"), sep="\t", header=header, index=False)
+    df = download_gsms(list(samples), sra_kwargs, location)
+    tsv = df.to_csv(os.path.join(location, "output.tsv"), sep="\t", header=header, index=False)
+    i = df.set_index("gsm")
+    i.to_json(os.path.join(location, "output.json"), orient="columns")
+    return tsv
 
 
 
