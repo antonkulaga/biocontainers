@@ -8,6 +8,7 @@ from GEOparse import *
 from GEOparse import utils
 from functional import *
 import pandas as pd
+from collections import OrderedDict
 
 
 class Downloader:
@@ -28,7 +29,7 @@ class Downloader:
         return contents.count("\n") == 8
 
     @staticmethod
-    def reads_2_frame(files: List[str], gsm_id: str, keep_sra: bool) -> (str, pd.DataFrame):
+    def reads_2_frame(gsm_id: str, files: List[str], keep_sra: bool) -> pd.DataFrame:
         # example:
         # ['/data/Supp_GSM1698568_Biochain_Adult_Liver/SRR2014238_pass_1.fastq.gz',
         # '/data/Supp_GSM1698568_Biochain_Adult_Liver/SRR2014238_pass_2.fastq.gz',
@@ -37,33 +38,37 @@ class Downloader:
         if keep_sra:
             if num == 3:
                 tp = "paired"
-                return (tp, pd.DataFrame({"gsm": pd.Series(gsm_id),
-                                          "type": pd.Series(tp),
-                                          "forward": pd.Series(files[0]),
-                                          "reverse": pd.Series(files[1]),
-                                          "sra": pd.Series(files[2])}))
+                return pd.DataFrame(OrderedDict({"gsm": pd.Series(gsm_id),
+                                     "type": pd.Series(tp),
+                                     "forward": pd.Series(files[0]),
+                                     "reverse": pd.Series(files[1]),
+                                     "sra": pd.Series(files[2])}))
             else:
                 if num == 2:
                     tp = "single"
-                    return (tp, pd.DataFrame({"gsm": pd.Series(gsm_id),
-                                              "type": pd.Series(tp),
-                                              "forward": pd.Series(files[0]),
-                                              "sra": pd.Series(files[1])}))
+                    return pd.DataFrame(OrderedDict({"gsm": pd.Series(gsm_id),
+                                         "type": pd.Series(tp),
+                                         "forward": pd.Series(files[0]),
+                                         "reverse": pd.Series(""),
+                                         "sra": pd.Series(files[1])}))
                 else:
                     raise ValueError(f"invalid number of files in {gsm_id}: {num} with keep_sra {keep_sra}")
         else:
             if num == 2:
                 tp = "paired"
-                return (tp, pd.DataFrame({"gsm": pd.Series(gsm_id),
-                                          "type": pd.Series(tp),
-                                          "forward": pd.Series(files[0]),
-                                          "reverse": pd.Series(files[1])}))
+                return pd.DataFrame(OrderedDict({"gsm": pd.Series(gsm_id),
+                                     "type": pd.Series(tp),
+                                     "forward": pd.Series(files[0]),
+                                     "reverse": pd.Series(files[1]),
+                                     "sra": pd.Series("")}))
             else:
                 if num == 1:
                     tp = "single"
-                    return (tp, pd.DataFrame({"gsm": pd.Series(gsm_id),
-                                              "type": pd.Series(tp),
-                                              "forward": pd.Series(files[0])}))
+                    return pd.DataFrame(OrderedDict({"gsm": pd.Series(gsm_id),
+                                         "type": pd.Series(tp),
+                                         "forward": pd.Series(files[0]),
+                                         "reverse": pd.Series(""),
+                                         "sra": pd.Series("")}))
                 else:
                     raise ValueError(f"invalid number of files in {gsm_id}: {num} with keep_sra {keep_sra}")
 
@@ -85,7 +90,7 @@ class Downloader:
                                                                        # the directory name cannot contain many of the signs
                                                                        )))
 
-    def download_gsm(self, gsm_id: str, sra_kwargs: Dict[str, str], create_folder: bool = False) -> (str, pd.DataFrame):
+    def download_gsm(self, gsm_id: str, sra_kwargs: Dict[str, str], create_folder: bool = False) -> pd.DataFrame:
         gsm = cast(GSM, GEOparse.get_GEO(gsm_id, destdir=self.temp))
         geotype = gsm.geotype.upper()
 
@@ -100,7 +105,7 @@ class Downloader:
 
         files = gsm.download_SRA(self.email, directory_path, **sra_kwargs)
         keep_sra = cast(bool, sra_kwargs["keep_sra"])
-        return Downloader.reads_2_frame(files, gsm_id, keep_sra)
+        return Downloader.reads_2_frame(gsm_id, files, keep_sra)
 
     def download_gsm_suppl(self, gsm_id: str, sra_kwargs: Dict[str, str], create_folder: bool = False) -> List[
         Tuple[str, str]]:
