@@ -5,16 +5,9 @@ MAINTAINER Anton Kulaga antonkulaga@gmail.com
 #installing mypy
 RUN python3 -m pip install -U mypy
 
+RUN mkdir /opt/geoparse && mkdir /data
 COPY src/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
-
-RUN mkdir /opt/geoparse
-RUN mkdir /data
-
-COPY src/ /opt/geoparse
-
-WORKDIR /opt/geoparse
-RUN chmod +x /opt/geoparse/run.py
 
 ENV PLATFORM="ubuntu64"
 ENV SRA_VERSION="2.8.2-1"
@@ -34,5 +27,8 @@ RUN \
 ENV PATH="$PATH:/opt/sratoolkit/"
 
 WORKDIR /data
+
+COPY src/ /opt/geoparse
+RUN chmod +x /opt/geoparse/run.py
 
 CMD ["/opt/geoparse/run.py"]

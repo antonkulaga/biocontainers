@@ -35,9 +35,8 @@ def download(location: str, filetype: str, keep_sra: bool, header, samples):
     tsv = df.to_csv(os.path.join(location, "output.tsv"), sep="\t", header=header, index=False)
     i = df.set_index("gsm")
     i.to_json(os.path.join(location, "output.json"), orient="columns")
+    #tsv2 = fix_files(df).to_csv(os.path.join(location, "output.tsv"), sep="\t", header=header, index=False)
     return tsv
-
-
 
 def download_gsms(gsms: List[str], sra_kwargs: Dict[str, str], location: str) -> pd.DataFrame:
     from downloader import Downloader
