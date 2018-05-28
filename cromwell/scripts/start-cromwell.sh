@@ -1,3 +1,4 @@
 #!/bin/bash
-/pipelines/scripts/cromwell.scala server /pipelines/scripts application.conf /pipelines
+#NOTE: change pathes according to your layout
+/pipelines/cromwell/cromwell.sc server /pipelines/cromwell/application.conf /pipelines/cromwell/cromwell.jar /pipelines
 echo "started cromwell service"

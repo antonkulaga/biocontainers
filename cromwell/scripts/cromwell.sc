@@ -3,11 +3,6 @@
 import ammonite.ops._
 import ammonite.ops.ImplicitWd._
 
-import $ivy.`com.github.pathikrit::better-files:3.2.0`
-@
-import better.files._
-import java.io.{File => JFile}
-
 @main
 def mysql(tag: String = "5.7", config: Path = Path("/pipelines"), folder: Path = pwd) = {
   val base = config.toString
@@ -21,7 +16,6 @@ def mysql(tag: String = "5.7", config: Path = Path("/pipelines"), folder: Path =
 }
 
 @main
-def server(config: Path = (pwd / "scripts"), configName: String = "application.conf", folder: Path = pwd) = {
-  //-Dconfig.file=/path/to/yourOverrides.conf cromwell.jar
-  %.java(s"-Dconfig.file=${config}/${configName}", "-jar", s"${config}/cromwell.jar", "server")(folder)
+def server(config: Path = (pwd / "application.conf"), jar: Path = (pwd / "cromwell.jar"), folder: Path = pwd) = {  
+  %.java(s"-Dconfig.file=${config}", "-jar", s"${jar}", "server")(folder)
 }
