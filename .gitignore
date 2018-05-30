@@ -41,5 +41,6 @@ files/test/*
 
 #python
 env
+venv
 .gitignore
 test/
