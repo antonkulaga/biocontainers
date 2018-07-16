@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-docker build -t sleuth-debug .
+docker build -t quay.io/comp-bio-aging/sleuth-debug .

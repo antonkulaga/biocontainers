@@ -11,7 +11,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 ENV PLATFORM="ubuntu64"
 #ENV SRA_VERSION="2.8.2-1"
-ENV SRA_VERSION="2.9.0"
+ENV SRA_VERSION="2.9.1"
 
 ENV PATH "$PATH:/opt/geoparse"
 

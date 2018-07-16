@@ -1,7 +1,8 @@
-url <- "http://bioconductor.org/packages/3.5/bioc"
+url <- "http://bioconductor.org/packages/3.7/bioc"
 
 if ("BiocInstaller" %in% rownames(installed.packages()))
 remove.packages("BiocInstaller")
+source("https://install-github.me/r-lib/remotes")
 install.packages("BiocInstaller", repos=url)
 
 to_install <- c("Matrix", "KernSmooth", "mgcv", "devtools", "pachterlab/sleuth", "COMBINE-lab/wasabi", "biomaRt")

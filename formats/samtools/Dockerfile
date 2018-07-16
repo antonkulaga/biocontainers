@@ -1,4 +1,4 @@
-FROM ubuntu:17.10
+FROM quay.io/comp-bio-aging/base
 
 MAINTAINER Anton Kulaga <antonkulaga@gmail.com>
 
@@ -6,7 +6,6 @@ RUN apt-get update && \
     apt-get install -y \
       libncurses5-dev \
       libncursesw5-dev \
-      build-essential \
       zlib1g-dev \
       libbz2-dev \
       liblzma-dev \
@@ -17,7 +16,7 @@ RUN apt-get update && \
     
     
     
-ENV VERSION="1.6"
+ENV VERSION="1.8"
 ENV PLATFORM="linux-intel-x86_64"
 
 WORKDIR /opt/

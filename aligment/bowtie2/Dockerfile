@@ -4,7 +4,7 @@ MAINTAINER Anton Kulaga
 
 ENV PLATFORM=linux-x86_64
 
-ENV BOWTIE2_VERSION=2.3.3.1
+ENV BOWTIE2_VERSION=2.3.4.1
 
 WORKDIR /opt
 RUN wget https://sourceforge.net/projects/bowtie-bio/files/bowtie2/${BOWTIE2_VERSION}/bowtie2-${BOWTIE2_VERSION}-${PLATFORM}.zip/download \
