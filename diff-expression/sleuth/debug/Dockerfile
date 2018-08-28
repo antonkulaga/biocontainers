@@ -1,4 +1,4 @@
-FROM sleuth-base
+FROM quay.io/comp-bio-aging/sleuth-base
 
 MAINTAINER antonkulaga@gmail.com
 
