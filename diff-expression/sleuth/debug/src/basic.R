@@ -1,19 +1,35 @@
+install.packages('tidyverse', dependencies=TRUE, type="source")
+library("sleuth")
+require(tidyverse)
+require(purrr)
+require(stringr)
+#BiocInstaller::biocLite("COMBINE-lab/wasabi")
+require(wasabi)
+
 #https://pachterlab.github.io/sleuth_walkthroughs/trapnell/analysis.html
+
+base <- file.path("/home", "rstudio", "samples")
+#GSM879792,GSM879794,GSM879796
+#GSM879793,GSM879795,GSM879797
+
+samples <- c("GSM879792", "GSM879793")
+quant <- "transcripts_quant"
+pathes <- map_chr(samples, function(s) str_c(base, "/", s, "/", quant))
+prepare_fish_for_sleuth(pathes)
+
+conditions <- c("one", "two")
+
+s2c = data.frame(
+sample = samples,
+condition = conditions,
+path = pathes,
+stringsAsFactors=FALSE
+)
+so <- sleuth_prep(s2c, extra_bootstrap_summary = FALSE)
 
 model <- 'lrt'
 assembly <- "hsapiens_gene_ensembl"
 
-library("sleuth")
-
-base <- file.path("/home", "rstudio")
-data <- file.path(base, "data")
-series <- file.path(data, "results")
-conditions <- "hiseq_info.txt"
-sample_id <- dir(series)
-kal_dirs <- file.path(series, sample_id, "kallisto")
-
-source("http://bioconductor.org/biocLite.R")
-biocLite("biomaRt")
 mart <- biomaRt::useMart(biomart = "ENSEMBL_MART_ENSEMBL",
 dataset = assembly,
 host = 'ensembl.org')

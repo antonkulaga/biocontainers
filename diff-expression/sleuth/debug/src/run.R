@@ -8,6 +8,4 @@ option_list = list(
               help="output file name [default= %default]", metavar="character")
 );
 opt_parser = OptionParser(option_list=option_list);
-opt = parse_args(opt_parser);
-wd = getwd()
-print(opt)
+parse_args(opt_parser, args = c("--help"));
