@@ -6,13 +6,12 @@ require(stringr)
 #BiocInstaller::biocLite("COMBINE-lab/wasabi")
 require(wasabi)
 
-#https://pachterlab.github.io/sleuth_walkthroughs/trapnell/analysis.html
-
 base <- file.path("/home", "rstudio", "samples")
-#GSM879792,GSM879794,GSM879796
-#GSM879793,GSM879795,GSM879797
+#GSM1696274,GSM1696275,GSM1696276
+#GSM1696271,GSM1696272,GSM1696273
 
-samples <- c("GSM879792", "GSM879793")
+
+samples <- c("GSM1696274", "GSM1696271")
 quant <- "transcripts_quant"
 pathes <- map_chr(samples, function(s) str_c(base, "/", s, "/", quant))
 prepare_fish_for_sleuth(pathes)
@@ -25,7 +24,7 @@ condition = conditions,
 path = pathes,
 stringsAsFactors=FALSE
 )
-so <- sleuth_prep(s2c, extra_bootstrap_summary = FALSE)
+so <- sleuth_prep(s2c)
 
 model <- 'lrt'
 assembly <- "hsapiens_gene_ensembl"
