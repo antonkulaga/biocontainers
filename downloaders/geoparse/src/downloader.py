@@ -34,9 +34,8 @@ class Downloader:
         # ['/data/Supp_GSM1698568_Biochain_Adult_Liver/SRR2014238_pass_1.fastq.gz',
         # '/data/Supp_GSM1698568_Biochain_Adult_Liver/SRR2014238_pass_2.fastq.gz',
         # '/data/Supp_GSM1698568_Biochain_Adult_Liver/SRR2014238.sra']
-        num = len(files)
         if keep_sra:
-            if num == 3:
+            if Downloader.is_paired_sra(files[2]):
                 tp = "paired"
                 return pd.DataFrame(OrderedDict({"gsm": pd.Series(gsm_id),
                                      "type": pd.Series(tp),
@@ -44,17 +43,14 @@ class Downloader:
                                      "reverse": pd.Series(files[1]),
                                      "sra": pd.Series(files[2])}))
             else:
-                if num == 2:
-                    tp = "single"
-                    return pd.DataFrame(OrderedDict({"gsm": pd.Series(gsm_id),
-                                         "type": pd.Series(tp),
-                                         "forward": pd.Series(files[0]),
-                                         "reverse": pd.Series(""),
-                                         "sra": pd.Series(files[1])}))
-                else:
-                    raise ValueError(f"invalid number of files in {gsm_id}: {num} with keep_sra {keep_sra}")
+                tp = "single"
+                return pd.DataFrame(OrderedDict({"gsm": pd.Series(gsm_id),
+                                     "type": pd.Series(tp),
+                                     "forward": pd.Series(files[0]),
+                                     "reverse": pd.Series(""),
+                                     "sra": pd.Series(files[1])}))
         else:
-            if num == 2:
+            if Downloader.is_paired_sra(files[2]):
                 tp = "paired"
                 return pd.DataFrame(OrderedDict({"gsm": pd.Series(gsm_id),
                                      "type": pd.Series(tp),
@@ -62,15 +58,12 @@ class Downloader:
                                      "reverse": pd.Series(files[1]),
                                      "sra": pd.Series("")}))
             else:
-                if num == 1:
-                    tp = "single"
-                    return pd.DataFrame(OrderedDict({"gsm": pd.Series(gsm_id),
-                                         "type": pd.Series(tp),
-                                         "forward": pd.Series(files[0]),
-                                         "reverse": pd.Series(""),
-                                         "sra": pd.Series("")}))
-                else:
-                    raise ValueError(f"invalid number of files in {gsm_id}: {num} with keep_sra {keep_sra}")
+                tp = "single"
+                return pd.DataFrame(OrderedDict({"gsm": pd.Series(gsm_id),
+                                     "type": pd.Series(tp),
+                                     "forward": pd.Series(files[0]),
+                                     "reverse": pd.Series(""),
+                                     "sra": pd.Series("")}))
 
     def __init__(self, folder: str = "./", temp: str = "/tmp", email: str = "antonkulaga@gmail.com"):
         self.folder = folder
