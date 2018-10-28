@@ -1,6 +1,6 @@
 FROM quay.io/comp-bio-aging/java:latest
 
-LABEL maintainer "antonkulaga@gmail.com"
+LABEL maintainer="antonkulaga@gmail.com"
 
 # Env variables
 ENV SBT_VERSION 1.1.6
@@ -14,4 +14,4 @@ RUN \
   apt-get install sbt && \
   sbt sbtVersion
 
-CMD [sbt]
+CMD ["sbt"]

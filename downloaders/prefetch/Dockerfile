@@ -1,4 +1,4 @@
-FROM quay.io/comp-bio-aging/base:latest
+FROM quay.io/biocontainers/sra-tools:2.9.1_1--h470a237_0
 
 MAINTAINER Anton Kulaga
 
