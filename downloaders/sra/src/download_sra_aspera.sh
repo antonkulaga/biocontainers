@@ -3,7 +3,7 @@
 # input identificator
 sraid=$1
 # constant prefix for all SRA
-prefix=anonftp@ftp.ncbi.nlm.nih.gov:/sra/sra-instant/reads/ByRun/sra
+prefix=anonftp@ftp.ncbi.nlm.nih.gov:/sra/sra-instant/reads/ByRun/sra  # alternative: anonftp@ftp-trace.ncbi.nih.gov:sra/sra-instant/reads/ByRun/sra
 
 # get type - first 3 letters of SRA ID
 sratype=$(expr substr "$sraid" 1 3)
@@ -14,5 +14,8 @@ groupdir=$(expr substr "$sraid" 1 6)
 fullpath=${prefix}/${sratype}/${groupdir}/${sraid}/${sraid}.sra
 echo $fullpath
 
-mkdir results
-ascp -i /asperaweb_id_dsa.openssh -Tr -Q -l 100M -P33001 -L- $fullpath ./results
+if [ ! -d results ]
+then
+    mkdir results
+fi
+ascp -T -k 1 -i /root/.aspera/connect/etc/asperaweb_id_dsa.openssh $fullpath ./results
