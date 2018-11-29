@@ -15,7 +15,8 @@ ADD install.R /tmp/
 RUN R -f /tmp/install.R && \
     echo "library(BiocInstaller)" > $HOME/.Rprofile
 
-RUN chown -R rstudio /home/rstudio/
+RUN chown -R rstudio /home/rstudio/ && rm -rf /home/rstudio/kitematic
+RUN mkdir /data && ln -s /data /home/rstudio/data
 
 # invalidates cache every 24 hours
 ADD http://master.bioconductor.org/todays-date /tmp/
