@@ -2,21 +2,21 @@ FROM quay.io/comp-bio-aging/base
 
 MAINTAINER Anton Kulaga <antonkulaga@gmail.com>
 
-RUN apt-get update && \
-    apt-get install -y \
+RUN apt update && \
+    apt install -y \
       libncurses5-dev \
       libncursesw5-dev \
       zlib1g-dev \
       libbz2-dev \
       liblzma-dev \
       wget && \
-    apt-get clean && \
-    apt-get purge && \
+    apt clean && \
+    apt purge && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
     
     
     
-ENV VERSION="1.8"
+ENV VERSION="1.9"
 ENV PLATFORM="linux-intel-x86_64"
 
 WORKDIR /opt/

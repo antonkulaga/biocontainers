@@ -2,7 +2,7 @@ FROM bioperl/bioperl
 
 MAINTAINER Anton Kulaga antonkulaga@gmail.com
 
-ENV VERSION 5.3.0
+ENV VERSION 5.5.0
 
 RUN apt-get update && \
  apt-get upgrade -y && \
@@ -10,7 +10,7 @@ RUN apt-get update && \
 
 WORKDIR /opt/
 
-RUN wget https://github.com/TransDecoder/TransDecoder/archive/v$VERSION.zip && \
+RUN wget https://github.com/TransDecoder/TransDecoder/archive/TransDecoder-v$VERSION.zip && \
     unzip v$VERSION.zip && \
     ln -s TransDecoder-$VERSION TransDecoder
 
