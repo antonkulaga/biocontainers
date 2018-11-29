@@ -4,15 +4,16 @@ MAINTAINER Anton Kulaga antonkulaga@gmail.com
 
 ENV VERSION 5.5.0
 
-RUN apt-get update && \
- apt-get upgrade -y && \
- apt-get install -y cmake zip wget gcc git build-essential
+RUN apt update && \
+ apt upgrade -y && \
+ apt install -y cmake zip wget gcc git build-essential
 
 WORKDIR /opt/
 
 RUN wget https://github.com/TransDecoder/TransDecoder/archive/TransDecoder-v$VERSION.zip && \
-    unzip v$VERSION.zip && \
-    ln -s TransDecoder-$VERSION TransDecoder
+    unzip TransDecoder-v$VERSION.zip && \
+    rm -rf TransDecoder-v$VERSION.zip && \
+    mv TransDecoder-TransDecoder-v$VERSION TransDecoder
 
 WORKDIR /opt/TransDecoder
 
