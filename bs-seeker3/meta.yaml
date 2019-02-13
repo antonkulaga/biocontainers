@@ -1,0 +1,27 @@
+package:
+  name: bs-seeker3
+  version: "0.0.1"
+
+requirements:
+  build:
+    - python 2.7
+    - gcc
+    - pysam
+    - matplotlib
+  run:
+    - python 2.7
+    - libgcc
+    - snap-aligner
+
+source:
+  git_url: https://github.com/khuang28jhu/bs3
+
+test:
+  imports:
+    - hello
+
+about:
+  home: https://github.com/khuang28jhu/bs3
+  license: "Apache-2.0"
+  license_file: LICENSE
+
