@@ -16,5 +16,5 @@ RUN git clone https://github.com/chhylp123/BitMapperBS
 WORKDIR /opt/BitMapperBS
 RUN chmod +x /opt/BitMapperBS/htslib/version.sh
 RUN make
-RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/BitMapperBS/htslib_aim:/opt/BitMapperBS/htslib
+ENV LD_LIBRARY_PATH="/opt/BitMapperBS/htslib_aim/lib"
 CMD /opt/BitMapperBS/bitmapperBS
