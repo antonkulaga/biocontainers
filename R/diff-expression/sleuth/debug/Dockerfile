@@ -1,6 +1,6 @@
-FROM quay.io/comp-bio-aging/sleuth-base
+FROM quay.io/comp-bio-aging/rstudio:master
 
 MAINTAINER antonkulaga@gmail.com
 
-ADD src /home/rstudio/
-RUN chown -R rstudio /home/rstudio/
+ADD install.R /tmp/
+RUN R -f /tmp/install.R
