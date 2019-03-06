@@ -1,0 +1,5 @@
+source("https://install-github.me/r-lib/remotes")
+to_install <- c("tximport", "DESeq2")
+for (pack in to_install)
+if (!suppressWarnings(require(pack, character.only=TRUE)))
+BiocInstaller::biocLite(pack)
