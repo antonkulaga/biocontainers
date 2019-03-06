@@ -12,8 +12,7 @@ RUN pip install awscli
 
 ADD install.R /tmp/
 
-RUN R -f /tmp/install.R && \
-    echo "library(BiocInstaller)" > $HOME/.Rprofile
+RUN R -f /tmp/install.R
 
 RUN chown -R rstudio /home/rstudio/
 #RUN rm -rf /home/rstudio/kitematic
