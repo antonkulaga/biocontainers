@@ -1,4 +1,4 @@
-FROM rocker/rstudio:devel
+FROM rocker/rstudio:latest
 
 MAINTAINER antonkulaga@gmail.com
 
