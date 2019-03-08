@@ -15,7 +15,7 @@ ADD install.R /tmp/
 RUN R -f /tmp/install.R
 
 RUN chown -R rstudio /home/rstudio/
-RUN rm -rf /home/rstudio/kitematic
+#RUN rm -rf /home/rstudio/kitematic
 RUN mkdir /data && ln -s /data /home/rstudio/data
 
 # invalidates cache every 24 hours
