@@ -6,3 +6,4 @@ RUN apt -y install --fix-missing gdb libxml2-dev python-pip libz-dev nano libbz2
 
 ADD install.R /tmp/
 RUN R -f /tmp/install.R
+ADD src /home/rstudio/

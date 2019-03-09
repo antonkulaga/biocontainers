@@ -2,5 +2,9 @@ if ("BiocInstaller" %in% rownames(installed.packages()))
 remove.packages("BiocInstaller")
 
 install.packages("BiocManager")
-to_install <- c("Matrix", "KernSmooth", "mgcv", "devtools", "biomaRt", "GEOmetadb", "SRAdb", "Biostrings", "BiocGenerics", "AnnotationDbi", "tximport", "optparse", "ensembldb")
+to_install <- c(
+    "Matrix", "KernSmooth", "mgcv", "Biostrings", "BiocGenerics",
+    "devtools", "tximport", "tximeta", "optparse", #for development, counts import and CLI
+    "biomaRt", "GEOmetadb", "SRAdb", "AnnotationDbi", "ensembldb", "AHEnsDbs" #for annotations
+)
 BiocManager::install(to_install)
