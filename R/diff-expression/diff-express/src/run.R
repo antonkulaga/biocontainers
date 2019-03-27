@@ -3,7 +3,7 @@ suppressPackageStartupMessages(library("optparse"))
 suppressPackageStartupMessages(library("stats"))
 
 option_list <- list(
-make_option(c("-s", "--samples"), help="give .tsv files with samples",
+    make_option(c("-s", "--samples"), help="give .tsv files with samples",
 metavar="number")
 )
 
