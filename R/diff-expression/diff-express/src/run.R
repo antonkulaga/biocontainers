@@ -1,6 +1,15 @@
 #!/usr/bin/env Rscript
-suppressPackageStartupMessages(library("optparse"))
-suppressPackageStartupMessages(library("stats"))
+install.packages("argparse")
+library("argparse")
+
+parser = ArgumentParser(prog='PROG')
+subparsers = parser$add_subparsers(help='sub-command help')
+to_genes = subparsers$add_parser('transcripts2genes', help='transcripts to genes')
+to_genes$add_argument('bar', type='integer', help='bar help')
+
+# create the parser for the "b" command
+parser_b = subparsers$add_parser('b', help='b help')
+parser_b$add_argument('--baz', choices='XYZ', help='baz help')
 
 option_list <- list(
     make_option(c("-s", "--samples"), help="give .tsv files with samples",
@@ -12,7 +21,7 @@ metavar="number")
 opt <- parse_args(OptionParser(option_list=option_list))
 
 # print some progress messages to stderr if "quietly" wasn't requested
-if ( opt$samples ) {
+if ( opt$samples == NULL) {
     library(DESeq2)
     library(tximport)
     library(tximeta)
