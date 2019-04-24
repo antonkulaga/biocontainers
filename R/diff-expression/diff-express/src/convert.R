@@ -26,10 +26,20 @@ process = function(name, samples, folder, conversion, countsFromAbudance = "no")
     if(!is.na(conversion)){
         genes_folder = file.path(folder, "genes")
         dir.create(genes_folder, showWarnings = FALSE)
-        tx2gene = read.csv(conversion, sep = "\t")
+        tx2gene = read.csv(conversion, sep = "\t", na.rm=TRUE)
+
         g_prefix = if(name=="") "genes" else paste(name, "genes", sep="_")
-        saveTxi(transcripts, genes_folder, g_prefix)
-        genes = summarizeToGene(transcripts, tx2gene = tx2gene, ignoreAfterBar = TRUE, countsFromAbundance = countsFromAbudance)
+        print("aggregating transcript expressions by genes")
+        genes = tryCatch(
+        {
+            summarizeToGene(transcripts, tx2gene = tx2gene, ignoreAfterBar = TRUE, ignoreTxVersion = ignoreTxVersion, countsFromAbundance = countsFromAbudance)
+        }
+        , error = function(cond){
+            return(summarizeToGene(transcripts, tx2gene = tx2gene, ignoreAfterBar = TRUE, ignoreTxVersion = TRUE, countsFromAbundance = countsFromAbudance))
+        }
+        )
+        print(paste("saving genes expressions to", genes_folder))
+        saveTxi(genes, genes_folder, g_prefix)
     }
 }
 

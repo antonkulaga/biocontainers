@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-docker build -t quay.io/comp-bio-aging/deseq2 .
+docker build -t quay.io/comp-bio-aging/diff-express .
