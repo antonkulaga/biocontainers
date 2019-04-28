@@ -1,11 +1,13 @@
 #!/usr/bin/env Rscript
 library(optigrab)
 library(tximport)
+suppressMessages(library(dplyr))
 
 conversion = opt_get("transcripts2genes")
 samples = opt_get("samples", required = TRUE)
 name = opt_get("name", "")
 folder = opt_get("folder", getwd())
+guessUnknown = opt_get("guessUnknown", default = TRUE)
 
 
 saveTxi = function(txi, folder, prefix){
@@ -16,18 +18,22 @@ saveTxi = function(txi, folder, prefix){
     txi
 }
 
-process = function(name, samples, folder, conversion, countsFromAbudance = "no") {
+process = function(name, samples, folder, conversion, guessUnknown = TRUE, countsFromAbudance = "no") {
     dir.create(folder, showWarnings = FALSE)
     transcripts = tximport(samples, type = "salmon", ignoreAfterBar = TRUE, txOut = TRUE, countsFromAbundance = countsFromAbudance)
     t_folder = file.path(folder, "transcripts")
     dir.create(t_folder, showWarnings = FALSE)
     t_prefix = if(name=="") "transcripts" else paste(name, "transcripts", sep="_")
-    saveTxi(transcripts, t_folder, t_prefix)
+    #saveTxi(transcripts, t_folder, t_prefix)
     if(!is.na(conversion)){
         genes_folder = file.path(folder, "genes")
         dir.create(genes_folder, showWarnings = FALSE)
-        tx2gene = read.csv(conversion, sep = "\t", na="NA")
-
+        tx2gene = read.csv(conversion, sep = "\t", header = FALSE, stringsAsFactors = FALSE, colClasses = "character")
+        if(guessUnknown == TRUE){
+            tx2gene$V2 <- if_else(is.na(tx2gene$V2), tx2gene$V3, tx2gene$V2)
+        } else {
+            tx2gene$V2 <- if_else(is.na(tx2gene$V2), "unknown", tx2gene$V2)
+        }
         g_prefix = if(name=="") "genes" else paste(name, "genes", sep="_")
         print("aggregating transcript expressions by genes")
         genes = tryCatch(
@@ -43,14 +49,14 @@ process = function(name, samples, folder, conversion, countsFromAbudance = "no")
     }
 }
 
-processMany = function(name, samplesTSV, folder, conversion, countsFromAbudance = "no") {
+processMany = function(name, samplesTSV, folder, conversion, guessUnknown = TRUE, countsFromAbudance = "no") {
     tsv <- read.csv(samplesTSV, header = TRUE, sep = "\t")
     samples = file.path(tsv$files)
-    process(name, samples, folder, conversion, countsFromAbudance)
+    process(name, samples, folder, conversion, guessUnknown, countsFromAbudance)
 }
 
 if(!is.na(samples)) {
-    if(endsWith(samples, ".tsv")) processMany(name, samples, folder, conversion) else process(name, samples, folder, conversion)
+    if(endsWith(samples, ".tsv")) processMany(name, samples, folder, conversion, guessUnknown) else process(name, samples, folder, conversion, guessUnknown)
 } else {
     opt_help()
 }
