@@ -24,7 +24,7 @@ process = function(name, samples, folder, conversion, guessUnknown = TRUE, count
     t_folder = file.path(folder, "transcripts")
     dir.create(t_folder, showWarnings = FALSE)
     t_prefix = if(name=="") "transcripts" else paste(name, "transcripts", sep="_")
-    #saveTxi(transcripts, t_folder, t_prefix)
+    saveTxi(transcripts, t_folder, t_prefix)
     if(!is.na(conversion)){
         genes_folder = file.path(folder, "genes")
         dir.create(genes_folder, showWarnings = FALSE)
