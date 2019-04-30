@@ -38,7 +38,7 @@ process = function(name, samples, folder, conversion, guessUnknown = TRUE, count
         print("aggregating transcript expressions by genes")
         genes = tryCatch(
         {
-            summarizeToGene(transcripts, tx2gene = tx2gene, ignoreAfterBar = TRUE, ignoreTxVersion = ignoreTxVersion, countsFromAbundance = countsFromAbudance)
+            summarizeToGene(transcripts, tx2gene = tx2gene, ignoreAfterBar = TRUE, ignoreTxVersion = FALSE, countsFromAbundance = countsFromAbudance)
         }
         , error = function(cond){
             return(summarizeToGene(transcripts, tx2gene = tx2gene, ignoreAfterBar = TRUE, ignoreTxVersion = TRUE, countsFromAbundance = countsFromAbudance))
