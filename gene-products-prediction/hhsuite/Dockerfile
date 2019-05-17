@@ -1,4 +1,4 @@
-FROM quay.io/comp-bio-aging/basic:latest
+FROM quay.io/comp-bio-aging/base:latest
 
 MAINTAINER Anton Kulaga
 

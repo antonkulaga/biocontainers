@@ -2,8 +2,8 @@ FROM quay.io/comp-bio-aging/base:latest
 
 MAINTAINER Anton Kulaga
 
-ENV VERSION=3.8.1
-ENV SUB_VERSION=161274-linux-g2.12-64
+ENV VERSION=3.9.1
+ENV SUB_VERSION=171801-linux-g2.12-64
 
 ## installation of ibm-aspera-connect
 

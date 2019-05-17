@@ -1,6 +1,6 @@
 FROM phusion/baseimage:latest
 WORKDIR /tmp
-ENV VERSION v2.2.2
+ENV VERSION v2.3.0
 ENV BUILD_PACKAGES \
     build-essential \
     g++ \
