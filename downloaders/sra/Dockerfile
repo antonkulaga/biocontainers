@@ -5,7 +5,7 @@ MAINTAINER Anton Kulaga
 ENV VERSION=3.9.1
 ENV SUB_VERSION=171801-linux-g2.12-64
 
-RUN apt-get update && apt-get install -y wget
+RUN apt-get update && apt-get install -y wget nano
 
 ## installation of ibm-aspera-connect
 
