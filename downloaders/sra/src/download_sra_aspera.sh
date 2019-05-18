@@ -18,4 +18,13 @@ if [ ! -d results ]
 then
     mkdir results
 fi
-ascp -T -k 1 -i /home/downloader/.aspera/connect/etc/asperaweb_id_dsa.openssh $fullpath ./results
+
+{ # try
+
+    ascp -T -k 1 -i /home/downloader/.aspera/connect/etc/asperaweb_id_dsa.openssh $fullpath ./results
+    #save your output
+
+} || { # catch
+    prefetch -t http --force yes -O ./results $sraid
+}
+

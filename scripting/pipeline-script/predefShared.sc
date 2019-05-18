@@ -1,3 +1,7 @@
+import coursier.maven.MavenRepository
+interp.repositories() ++= Seq(
+  MavenRepository("https://dl.bintray.com/comp-bio-aging/main/")
+)
 import $plugin.$ivy.`org.scalamacros:::paradise:2.1.1`
 import $ivy.`com.lihaoyi::ammonite-ops:1.6.6`
 import $ivy.`com.pepegar::hammock-core:0.9.0`
