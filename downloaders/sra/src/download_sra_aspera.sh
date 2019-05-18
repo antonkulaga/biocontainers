@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # assemble of full path
-fullpath=$(srapath -a fasp -P $1)
+fullpath=$(srapath -a fasp -P $1 | head -n 1)
 path=${fullpath#*:}
 echo $path
 
