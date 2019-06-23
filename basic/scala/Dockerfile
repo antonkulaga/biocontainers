@@ -1,4 +1,4 @@
-FROM quay.io/comp-bio-aging/java:latest
+FROM quay.io/comp-bio-aging/java:master
 
 LABEL maintainer="antonkulaga@gmail.com"
 

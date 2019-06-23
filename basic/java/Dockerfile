@@ -1,12 +1,29 @@
 FROM quay.io/comp-bio-aging/base:latest
 
-RUN add-apt-repository ppa:linuxuprising/java && apt update
+WORKDIR /src
 
-# Install Java.
-RUN  apt install -y openjdk-11-jdk
+ENV   GRAAL_VERSION=19.0.2
+ENV   GRAAL_CE_URL=https://github.com/oracle/graal/releases/download/vm-${GRAAL_VERSION}/graalvm-ce-linux-amd64-${GRAAL_VERSION}.tar.gz
+
+RUN   apt-get update && \
+      apt-get install -y wget tar gzip gcc libz-dev
+
+RUN   cd /tmp && \
+      wget -q $GRAAL_CE_URL -O graalvm-ce-linux-amd64.tar.gz && \
+      tar -xvzf graalvm-ce-linux-amd64.tar.gz && \
+      mkdir -p /usr/lib/jvm/graalvm && \
+      mv graalvm-ce-${GRAAL_VERSION} /usr/lib/jvm/graalvm && \
+      rm graalvm-ce-linux-amd64.tar.gz && \
+      rm -rf /tmp/graalvm-ce-${GRAAL_VERSION} && \
+      rm -rf /tmp/*
+
+RUN   apt-get clean
+
+ENV   JAVA_HOME=/usr/lib/jvm/graalvm/graalvm-ce-${GRAAL_VERSION}
+ENV   PATH=$PATH:$JAVA_HOME/bin
+ENV   GRAALVM_HOME=/usr/lib/jvm/graalvm/graalvm-ce-${GRAAL_VERSION}
+
+RUN   gu install native-image
 
 # Define working directory.
 WORKDIR /data
-
-# Define commonly used JAVA_HOME variable
-ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64

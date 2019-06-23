@@ -1,4 +1,4 @@
-FROM quay.io/comp-bio-aging/ammonite:latest
+FROM quay.io/comp-bio-aging/ammonite:master
 
 LABEL maintainer="antonkulaga@gmail.com"
 

@@ -1,4 +1,4 @@
-FROM quay.io/comp-bio-aging/base
+FROM quay.io/comp-bio-aging/base:master
 
 MAINTAINER Anton Kulaga <antonkulaga@gmail.com>
 
