@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-docker build -t bowtie2 .
+docker build -t mashmap .

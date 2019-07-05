@@ -8,7 +8,7 @@ ENV MASHMAP=v2.0
 
 WORKDIR /opt
 
-RUN wget https://github.com/marbl/MashMap/releases/download/v2.0/mashmap-${PLATFORM}-${MASHMAP}.tar.gz && tar -xzf mashmap-${PLATFORM}-${MASHMAP}.tar.gz
+RUN wget https://github.com/marbl/MashMap/releases/download/v2.0/mashmap-${PLATFORM}-${MASHMAP}.tar.gz && tar -xzf mashmap-${PLATFORM}-${MASHMAP}.tar.gz && rm -rf mashmap-${PLATFORM}-${MASHMAP}.tar.gz
 
-
-ENV PATH "$PATH:/opt/bowtie2"
+ENV PATH "$PATH:/opt/mashmap-${PLATFORM}-${MASHMAP}"
+CMD "/opt/mashmap-${PLATFORM}-${MASHMAP}/mashmap"
