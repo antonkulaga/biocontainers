@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-docker build -t salmon-tools .
+docker build -t quay.io/comp-bio-aging/salmon-tools .
