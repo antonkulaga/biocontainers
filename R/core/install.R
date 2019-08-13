@@ -5,6 +5,6 @@ install.packages("BiocManager")
 to_install <- c(
     "Matrix", "KernSmooth", "mgcv", "Biostrings", "BiocGenerics",
     "devtools", "tximport", "tximeta", "optigrab", "optparse", #for development, counts import and CLI
-    "biomaRt", "GEOmetadb", "SRAdb", "AnnotationDbi", "ensembldb", "AHEnsDbs" #for annotations
+    "biomaRt","biomartr", "GEOmetadb", "SRAdb", "AnnotationDbi", "ensembldb", "AHEnsDbs" #for annotations
 )
 BiocManager::install(to_install)
