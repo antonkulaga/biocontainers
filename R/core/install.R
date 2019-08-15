@@ -8,3 +8,4 @@ to_install <- c(
     "biomaRt","biomartr", "GEOmetadb", "SRAdb", "AnnotationDbi", "ensembldb", "AHEnsDbs" #for annotations
 )
 BiocManager::install(to_install)
+#install.packages("biomartr", dependencies = TRUE)

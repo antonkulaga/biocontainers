@@ -44,3 +44,8 @@ env
 venv
 .gitignore
 test/
+
+#R
+.rstudio
+kitematic
+.Rhistory
