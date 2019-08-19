@@ -49,3 +49,4 @@ test/
 .rstudio
 kitematic
 .Rhistory
+.bash_history
