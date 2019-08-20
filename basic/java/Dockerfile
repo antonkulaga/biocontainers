@@ -2,7 +2,7 @@ FROM quay.io/comp-bio-aging/base:latest
 
 WORKDIR /src
 
-ENV   GRAAL_VERSION=19.1.0
+ENV   GRAAL_VERSION=19.1.1
 ENV   GRAAL_CE_URL=https://github.com/oracle/graal/releases/download/vm-${GRAAL_VERSION}/graalvm-ce-linux-amd64-${GRAAL_VERSION}.tar.gz
 
 RUN   apt-get update && \
