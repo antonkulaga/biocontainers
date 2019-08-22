@@ -1,20 +1,19 @@
-FROM quay.io/comp-bio-aging/base
+FROM quay.io/comp-bio-aging/fastp
 
-RUN apt install -y liblzma-dev zlib1g-dev libbz2-dev
+#Install samtools
+RUN apt-get update && apt-get install -y samtools
 
-ENV LIBDIVSURFSORT_VERSION="2.0.1"
+#Install R
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get install -y r-base
+RUN R -e "install.packages(c('ggplot2', 'pheatmap', 'xtable'))"
 
-WORKDIR /opt/
-RUN wget https://github.com/y-256/libdivsufsort/archive/$LIBDIVSURFSORT_VERSION.zip && unzip $LIBDIVSURFSORT_VERSION && rm -rf $LIBDIVSURFSORT_VERSION.zip
-WORKDIR libdivsufsort-$LIBDIVSURFSORT_VERSION
-RUN mkdir build
-WORKDIR build
-RUN cmake -DCMAKE_BUILD_TYPE="Release" -DCMAKE_INSTALL_PREFIX="/usr/local" ..
-RUN make install
-WORKDIR /opt/
-RUN git clone https://github.com/chhylp123/BitMapperBS
-WORKDIR /opt/BitMapperBS
-RUN chmod +x /opt/BitMapperBS/htslib/version.sh
+RUN apt-get install -y libgsl-dev
+
+WORKDIR /opt
+RUN git clone https://github.com/GuoliangLi-HZAU/BatMeth2
+WORKDIR BatMeth2
+RUN ./configure
 RUN make
-ENV LD_LIBRARY_PATH="/opt/BitMapperBS/htslib_aim/lib"
-CMD /opt/BitMapperBS/bitmapperBS
+RUN make copy
+RUN Rscript scripts/install.rpackages.r
