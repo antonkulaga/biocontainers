@@ -1,13 +1,25 @@
-FROM ncbi/sra-toolkit:latest
+FROM quay.io/comp-bio-aging/base:master
 
 MAINTAINER Anton Kulaga
 
-ENV VERSION=3.9.1
-ENV SUB_VERSION=171801-linux-g2.12-64
+RUN apt-get update && apt-get install -y sudo openssh-server libxml2-dev cpanminus
 
-RUN apt-get update && apt-get install -y wget nano sudo openssh-server
+ENV SRA_VERSION=2.10.0
+ENV SRA_SUB_VERSION=ubuntu64
+
+#installing sra-toolkit
+
+RUN apt-get update -y && \
+    wget -P / "http://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/${SRA_VERSION}/sratoolkit.${SRA_VERSION}-${SRA_SUB_VERSION}.tar.gz" && \
+    tar zxf /sratoolkit.${SRA_VERSION}-${SRA_SUB_VERSION}.tar.gz && \
+    cp -r /sratoolkit.${SRA_VERSION}-${SRA_SUB_VERSION}/bin/* /usr/bin && \
+    rm -fr /sratoolkit.${SRA_VERSION}-${SRA_SUB_VERSION}*
+
+RUN cpanm install XML::LibXML
 
 ## installation of ibm-aspera-connect
+ENV VERSION=3.9.6
+ENV SUB_VERSION=173386-linux-g2.12-64
 
 RUN useradd --create-home downloader | chpasswd && adduser downloader sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
