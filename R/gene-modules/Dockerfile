@@ -2,8 +2,6 @@ FROM quay.io/comp-bio-aging/rstudio:master
 
 MAINTAINER antonkulaga@gmail.com
 
-RUN apt -y install --fix-missing libgsl-dev
-
 ADD install.R /tmp/
 RUN R -f /tmp/install.R
 ADD src /home/rstudio/
