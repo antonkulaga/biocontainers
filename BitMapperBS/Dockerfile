@@ -1,6 +1,6 @@
 FROM quay.io/comp-bio-aging/base
 
-RUN apt install -y liblzma-dev zlib1g-dev libbz2-dev
+RUN apt install -y liblzma-dev #zlib1g-dev libbz2-dev
 
 ENV LIBDIVSURFSORT_VERSION="2.0.1"
 
@@ -17,4 +17,6 @@ WORKDIR /opt/BitMapperBS
 RUN chmod +x /opt/BitMapperBS/htslib/version.sh
 RUN make
 ENV LD_LIBRARY_PATH="/opt/BitMapperBS/htslib_aim/lib"
+
+ENV PATH="$PATH:/opt/BitMapperBS:/opt/BitMapperBS/pSAscan-0.1.0:/opt/BitMapperBS/pSAscan-0.1.0/src"
 CMD /opt/BitMapperBS/bitmapperBS
