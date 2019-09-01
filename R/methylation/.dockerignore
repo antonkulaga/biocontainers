@@ -5,6 +5,3 @@ results
 build_local.sh
 debug.sh
 run.sh
-.rstudio
-kitematic
-.Rhistory
