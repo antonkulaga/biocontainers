@@ -1,14 +1,4 @@
-if (!requireNamespace("BiocManager", quietly = TRUE))
-install.packages("BiocManager")
-
-BiocManager::install("DESeq2")
-BiocManager::install("WGCNA")
-BiocManager::install("sva")
-
-install.packages("MXM")
-install.packages("dplyr")
-install.packages("bestNormalize")
-install.packages("glmnet")
-install.packages("data.table")
-install.packages("org.Hs.eg.db")
-install.packages("caret")
+to_install_bio <- c("DESeq2", "WGCNA", "sva")
+BiocManager::install(to_install_bio)
+to_install <- c("dplyr","bestNormalize","glmnet","data.table","org.Hs.eg.db","caret","MXM")
+install.packages(to_install)
