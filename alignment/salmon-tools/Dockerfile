@@ -16,3 +16,4 @@ RUN chmod +x /opt/SalmonTools/scripts/generateDecoyTranscriptome.sh
 
 ENV PATH "$PATH:/opt/SalmonTools/scripts:/opt/bedtools2/bin"
 CMD "/opt/SalmonTools/scripts/generateDecoyTranscriptome.sh"
+USER cromwell

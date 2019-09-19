@@ -50,3 +50,5 @@ test/
 kitematic
 .Rhistory
 .bash_history
+
+DeepBlueR.cache

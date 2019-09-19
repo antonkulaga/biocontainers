@@ -12,3 +12,9 @@ RUN wget https://github.com/marbl/MashMap/releases/download/v2.0/mashmap-${PLATF
 
 ENV PATH "$PATH:/opt/mashmap-${PLATFORM}-${MASHMAP}"
 CMD "/opt/mashmap-${PLATFORM}-${MASHMAP}/mashmap"
+
+RUN useradd -r -u 1002 cromwell
+ENV EUID=1002
+RUN usermod -aG docker cromwell
+RUN groupadd -r cromwell && useradd -r -g cromwell cromwell
+USER cromwell
