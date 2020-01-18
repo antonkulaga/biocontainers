@@ -2,11 +2,11 @@ FROM quay.io/comp-bio-aging/base:latest
 
 WORKDIR /src
 
-ENV   GRAAL_VERSION=19.3.0.2
+ENV   GRAAL_VERSION=19.3.1
 ENV   GRAAL_CE_URL=https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-${GRAAL_VERSION}/graalvm-ce-java8-linux-amd64-${GRAAL_VERSION}.tar.gz
 
 RUN   apt-get update && \
-      apt-get install -y wget tar gzip gcc libz-dev
+      apt-get install -y tar gzip libz-dev
 
 RUN   cd /tmp && \
       wget -q $GRAAL_CE_URL -O graalvm-ce-java8-linux-amd64.tar.gz && \
