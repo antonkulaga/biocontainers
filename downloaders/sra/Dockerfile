@@ -4,7 +4,7 @@ MAINTAINER Anton Kulaga
 
 RUN apt-get update && apt-get install -y sudo openssh-server libxml2-dev cpanminus
 
-ENV SRA_VERSION=2.10.0
+ENV SRA_VERSION=2.10.3
 ENV SRA_SUB_VERSION=ubuntu64
 
 #installing sra-toolkit
@@ -18,7 +18,7 @@ RUN apt-get update -y && \
 RUN cpanm install XML::LibXML
 
 ## installation of ibm-aspera-connect
-ENV VERSION=3.9.6
+ENV VERSION=3.9.8
 ENV SUB_VERSION=173386-linux-g2.12-64
 
 RUN useradd --create-home downloader | chpasswd && adduser downloader sudo
