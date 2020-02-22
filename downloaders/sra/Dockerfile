@@ -19,7 +19,7 @@ RUN cpanm install XML::LibXML
 
 ## installation of ibm-aspera-connect
 ENV VERSION=3.9.8
-ENV SUB_VERSION=173386-linux-g2.12-64
+ENV SUB_VERSION=176272-linux-g2.12-64.tar.gz
 
 RUN useradd --create-home downloader | chpasswd && adduser downloader sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
