@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+vdb-config --restore-defaults
 # input identificator
 sraid=$1
 # constant prefix for all SRA
