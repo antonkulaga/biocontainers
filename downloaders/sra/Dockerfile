@@ -24,7 +24,7 @@ RUN apt-get update -y && \
 RUN cpanm install XML::LibXML
 
 ENV PATH=$PATH:/home/downloader/:/home/downloader/sratoolkit.${SRA_VERSION}-${SRA_SUB_VERSION}/bin
-RUN vdb-config --restore-defaults
+
 
 ## installation of ibm-aspera-connect
 ENV VERSION=3.9.8
