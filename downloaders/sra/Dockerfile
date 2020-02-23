@@ -13,7 +13,7 @@ WORKDIR /home/downloader
 
 #installing sra-toolkit
 
-ENV SRA_VERSION=2.10.3
+ENV SRA_VERSION=2.10.0
 ENV SRA_SUB_VERSION=ubuntu64
 
 RUN apt-get update -y && \
