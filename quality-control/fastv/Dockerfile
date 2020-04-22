@@ -1,4 +1,4 @@
-FROM quay.io/comp-bio-aging/base:latest
+FROM quay.io/comp-bio-aging/samtools:latest
 
 # set the environment variables
 ENV fastv_version 0.3.0
