@@ -1,7 +1,7 @@
 FROM quay.io/comp-bio-aging/samtools:latest
 
 # set the environment variables
-ENV fastv_version 0.3.0
+ENV fastv_version 0.8.1
 
 # run update and install necessary tools
 RUN apt-get update -y && apt-get install -y \
