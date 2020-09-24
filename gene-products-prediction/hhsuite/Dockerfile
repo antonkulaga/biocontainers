@@ -2,7 +2,7 @@ FROM quay.io/comp-bio-aging/base:latest
 
 MAINTAINER Anton Kulaga
 
-ENV HHSUITE_VERSION="3.0-beta.3"
+ENV HHSUITE_VERSION="3.3.0"
 ENV HHSUITE_PLATFORM="linux"
 
 WORKDIR /opt/
