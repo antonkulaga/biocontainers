@@ -1,8 +1,8 @@
 #!/usr/bin/env Rscript
 
 library(optigrab)
-species_folder = opt_get("species", default="/data/ensembl/97/species")
-output_folder = opt_get("output", default = "/data/ensembl/97/species/tx2gene")
+species_folder = opt_get("species", default="/data/ensembl/101/species")
+output_folder = opt_get("output", default = "/data/ensembl/101/species/tx2gene")
 colnames = opt_get("columns", default = FALSE)
 features = opt_get("features", default = c("ensembl_transcript_id", "ensembl_gene_id"), n = 4)
 host = opt_get("host", default = "www.ensembl.org") #
@@ -44,9 +44,9 @@ writeMapping <- function(organism, features, where, colnames = FALSE, host = "ww
   where
 }
 
-map_all <- function(species_folder = "/data/ensembl/97/species", 
+map_all <- function(species_folder = "/data/ensembl/101/species", 
                     features = c("ensembl_transcript_id", "ensembl_gene_id"), 
-                    output_folder= "/data/ensembl/97/species/tx2gene", 
+                    output_folder= "/data/ensembl/101/species/tx2gene", 
                     colnames = FALSE, host = "www.ensembl.org") {
   dirs = dir(species_folder)
   folds <- capitalize(dirs[dirs!="tx2gene"])

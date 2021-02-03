@@ -1,4 +1,4 @@
-if ("BiocInstaller" %in% rownames(installed.packages()))
+yfif ("BiocInstaller" %in% rownames(installed.packages()))
 remove.packages("BiocInstaller")
 
 install.packages("BiocManager")
