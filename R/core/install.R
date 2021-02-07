@@ -1,5 +1,4 @@
-yfif ("BiocInstaller" %in% rownames(installed.packages()))
-remove.packages("BiocInstaller")
+if("BiocInstaller" %in% rownames(installed.packages())) remove.packages("BiocInstaller")
 
 install.packages("BiocManager")
 to_install <- c(
