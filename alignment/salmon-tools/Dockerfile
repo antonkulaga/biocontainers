@@ -4,7 +4,7 @@ MAINTAINER Anton Kulaga
 
 WORKDIR /opt
 
-ENV BEDTOOLS="2.28.0"
+ENV BEDTOOLS="2.30.0"
 
 RUN wget https://github.com/arq5x/bedtools2/releases/download/v$BEDTOOLS/bedtools-$BEDTOOLS.tar.gz && tar -xzf bedtools-$BEDTOOLS.tar.gz && rm -rf bedtools-$BEDTOOLS.tar.gz
 WORKDIR /opt/bedtools2/bin

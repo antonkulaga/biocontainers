@@ -3,7 +3,7 @@ FROM quay.io/comp-bio-aging/java:master
 LABEL maintainer="antonkulaga@gmail.com"
 
 # Env variables
-ENV SBT_VERSION 1.3.13
+ENV SBT_VERSION 1.4.8
 
 # Install sbt
 RUN \

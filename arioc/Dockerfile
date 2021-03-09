@@ -2,7 +2,7 @@ FROM nvidia/cuda:devel
 
 MAINTAINER Anton Kulaga <antonkulaga@gmail.com>
 
-ENV ARIOC_VERSION="v1.40"
+ENV ARIOC_VERSION="v1.43"
 ENV ARIOC_NAME="Arioc.x.140"
 
 WORKDIR /opt/

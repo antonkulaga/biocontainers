@@ -1,6 +1,5 @@
-FROM quay.io/comp-bio-aging/fastv
+FROM quay.io/comp-bio-aging/fastp
 
-RUN ln -s /usr/local/bin/fastv /usr/local/bin/fastp
 RUN mkdir /opt/gencore
 WORKDIR /opt/gencore
 RUN wget http://opengene.org/gencore/gencore && chmod a+x ./gencore

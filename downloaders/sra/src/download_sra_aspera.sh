@@ -25,6 +25,6 @@ fi
     #save your output
 
 } || { # catch
-    prefetch -t http --force yes -O ./results $sraid
+    prefetch -X 9999999999999 -t http --force yes -O ./results $sraid
 }
 

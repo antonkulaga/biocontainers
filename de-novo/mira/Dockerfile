@@ -2,7 +2,7 @@ FROM quay.io/comp-bio-aging/base:master
 
 MAINTAINER Anton Kulaga <antonkulaga@gmail.com>
 
-ENV MIRA_VERSION="V5rc1"
+ENV MIRA_VERSION="V5rc2"
 ENV MIRA_PLATFORM="linux-gnu_x86_64"
 
 WORKDIR /opt
