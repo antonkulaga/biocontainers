@@ -2,7 +2,7 @@ FROM quay.io/comp-bio-aging/base:master
 
 MAINTAINER Anton Kulaga <antonkulaga@gmail.com>
 
-ENV DIAMOND_VERSION="v2.0.7"
+ENV DIAMOND_VERSION="v2.0.8"
 ENV DIAMOND_PLATFORM="linux64"
 
 ENV DIAMOND_PATH /opt/diamond-$DIAMOND_PLATFORM
