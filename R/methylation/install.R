@@ -7,9 +7,9 @@ to_install <- c("tximport",
                 "EnrichedHeatmap",
                 "epihet",
                 "RankProd",
-                "FlowSorted.Blood.450k",
                 "minfi",
                 "MEDIPS",
-                "RUVSeq"
+                "RUVSeq",
+                "FlowSorted.Blood.450k", "minfi" #arrays
 )
 BiocManager::install(to_install)

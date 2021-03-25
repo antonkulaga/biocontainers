@@ -1,11 +1,19 @@
 if("BiocInstaller" %in% rownames(installed.packages())) remove.packages("BiocInstaller")
 
-install.packages("BiocManager")
 to_install <- c(
-    "Matrix", "KernSmooth", "mgcv", "Biostrings", "BiocGenerics", "S4Vectors",
-    "devtools", "tximport", "tximeta", "optigrab", "optparse", #for development, counts import and CLI
-    "biomaRt","biomartr", "GEOmetadb", "SRAdb", "AnnotationDbi", "ensembldb", "AHEnsDbs", #for annotations
-    "missForest", "doParallel", "FlowSorted.Blood.450k", "minfi"
+  "BiocManager", # Bioconductor installer
+  "devtools", #Dev tools installer
+  "tidyverse", # The tidyverse is an opinionated collection of R packages designed for data science.
+  "shiny", #web
+  "caret",
+  "plotly", #charts
+  "optigrab", "optparse", "docopt" #for CLI
 )
-BiocManager::install(to_install)
-#install.packages("biomartr", dependencies = TRUE)
+install.packages(to_install, , dependencies = TRUE)
+to_install_bioconductor <- c(
+    "Matrix", "KernSmooth", "mgcv", "Biostrings", "BiocGenerics", "S4Vectors",
+    "devtools", "tximport", "tximeta", #for development, counts import
+    "biomaRt", "AnnotationDbi", "ensembldb", "AHEnsDbs", #for annotations
+    "missForest", "doParallel"
+)
+BiocManager::install(to_install_bioconductor)
