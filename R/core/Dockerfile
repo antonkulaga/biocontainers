@@ -7,7 +7,7 @@ MAINTAINER antonkulaga@gmail.com
 RUN  rm -f /var/lib/dpkg/available && rm -rf  /var/cache/apt/*
 
 RUN apt update && apt upgrade -y
-RUN apt install -y --fix-missing gdb python3-pip libxml2-dev libz-dev nano libbz2-dev zlib1g-dev libbz2-dev liblzma-dev libgsl-dev ibcurl4-openssl-dev
+RUN apt install -y --fix-missing gdb python3-pip libxml2-dev libz-dev nano libbz2-dev zlib1g-dev libbz2-dev liblzma-dev libgsl-dev libcurl4-openssl-dev
 
 RUN pip3 install awscli
 
