@@ -1,2 +1,2 @@
 # biocontainers
-Docker containers of Computational Biology of Aging Group
+Docker containers of Systems Biology of Aging Group

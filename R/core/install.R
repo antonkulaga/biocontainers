@@ -1,5 +1,5 @@
 if("BiocInstaller" %in% rownames(installed.packages())) remove.packages("BiocInstaller")
-install.package("BiocManager")
+install.packages("BiocManager")
 
 to_install <- c(
   "devtools", #Dev tools installer
