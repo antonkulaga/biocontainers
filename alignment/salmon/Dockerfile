@@ -1,4 +1,4 @@
-FROM quay.io/biocontainers/salmon:1.4.0--hf69c8f4_0
+FROM quay.io/biocontainers/salmon:1.5.2--h84f40af_0
 RUN adduser -D -u 1002 cromwell
 ENV EUID=1002
 USER cromwell
