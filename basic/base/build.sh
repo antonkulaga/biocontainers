@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-docker build -t quay.io/comp-bio-aging/base .
+docker build -t quay.io/comp-bio-aging/base:latest .
