@@ -15,36 +15,30 @@ ENV PATH /opt/conda/bin:$PATH
 
 WORKDIR /opt
 
-
-# Setting $BASH_ENV and the SHELL command will not result in .bashrc being sourced when
-# you supply the program to run as an argument to the "docker run" command.
-# Manually add directory for micromamba installed executables to PATH as a workaround.
+ENV ENV_NAME="base"
+ENV MAMBA_EXE="/bin/micromamba"
+ENV MAMBA_ROOT_PREFIX="/opt/conda"
 ENV PATH "$MAMBA_ROOT_PREFIX/bin:$PATH"
 
 WORKDIR /
 RUN wget -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
 
-WORKDIR /opt
-
-ENV ENV_NAME="base"
-ENV MAMBA_ROOT_PREFIX="/opt/conda"
-
-ENV PATH "$MAMBA_ROOT_PREFIX/bin:$PATH"
-
-# Use bash in Dockerfile RUN commands and make sure bashrc is sourced when
-# executing commands with /bin/bash -c
-# Needed to have the micromamba activate command configured etc.
-SHELL ["/bin/bash", "-c"]
-
-RUN useradd -ms /bin/bash micromamba && \
-    mkdir -p "$MAMBA_ROOT_PREFIX" && \
-    chmod -R a+rwx "$MAMBA_ROOT_PREFIX" "/home" && \
-    export ENV_NAME="$ENV_NAME"
-
-COPY entrypoint.sh /bin/entrypoint.sh
-
 WORKDIR /data
 
-ENTRYPOINT ["/bin/entrypoint.sh"]
-# Define default command.
+RUN echo "source /usr/local/bin/activate_env.sh" >> ~/.bashrc && \
+    echo "source /usr/local/bin/activate_env.sh" >> /etc/skel/.bashrc && \
+    useradd -ms /bin/bash micromamba && \
+    mkdir -p "$MAMBA_ROOT_PREFIX" && \
+    chmod -R a+rwx "$MAMBA_ROOT_PREFIX" "/home"
+
 CMD ["/bin/bash"]
+
+COPY activate_env.sh /usr/local/bin/activate_env.sh
+
+COPY shell.sh /usr/local/bin/shell.sh
+RUN chmod +x /usr/local/bin/shell.sh
+SHELL ["/usr/local/bin/shell.sh"]
+
+COPY entrypoint.sh /bin/entrypoint.sh
+RUN chmod +x /bin/entrypoint.sh
+ENTRYPOINT ["/bin/entrypoint.sh"]

@@ -16,7 +16,7 @@ RUN apt update && \
     
     
     
-ENV VERSION="1.13"
+ENV VERSION="1.14"
 ENV PLATFORM="linux-intel-x86_64"
 
 WORKDIR /opt/
