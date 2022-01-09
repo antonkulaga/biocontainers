@@ -16,18 +16,21 @@ ENV PATH /opt/conda/bin:$PATH
 WORKDIR /opt
 
 ENV ENV_NAME="base"
-ENV MAMBA_EXE="/bin/micromamba"
 ENV MAMBA_ROOT_PREFIX="/opt/conda"
+ENV MAMBA_EXE="$MAMBA_ROOT_PREFIX/bin/micromamba"
 ENV PATH "$MAMBA_ROOT_PREFIX/bin:$PATH"
 
-WORKDIR /
+WORKDIR $MAMBA_ROOT_PREFIX
 RUN wget -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
+RUN /opt/conda/bin/micromamba shell init -s bash -p /opt/conda/
+RUN /opt/conda/bin/micromamba shell init -s bash -p /home/$USER/micromamba
+
 
 WORKDIR /data
 
+
 RUN echo "source /usr/local/bin/activate_env.sh" >> ~/.bashrc && \
     echo "source /usr/local/bin/activate_env.sh" >> /etc/skel/.bashrc && \
-    useradd -ms /bin/bash micromamba && \
     mkdir -p "$MAMBA_ROOT_PREFIX" && \
     chmod -R a+rwx "$MAMBA_ROOT_PREFIX" "/home"
 
@@ -35,6 +38,8 @@ CMD ["/bin/bash"]
 
 COPY activate_env.sh /usr/local/bin/activate_env.sh
 
+RUN micromamba shell init -s bash -p /opt/conda
+COPY .mambarc $MAMBA_ROOT_PREFIX/.mambarc
 COPY shell.sh /usr/local/bin/shell.sh
 RUN chmod +x /usr/local/bin/shell.sh
 SHELL ["/usr/local/bin/shell.sh"]
