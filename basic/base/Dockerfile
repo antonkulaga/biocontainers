@@ -25,9 +25,7 @@ RUN wget -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | t
 RUN /opt/conda/bin/micromamba shell init -s bash -p /opt/conda/
 RUN /opt/conda/bin/micromamba shell init -s bash -p /home/$USER/micromamba
 
-
 WORKDIR /data
-
 
 RUN echo "source /usr/local/bin/activate_env.sh" >> ~/.bashrc && \
     echo "source /usr/local/bin/activate_env.sh" >> /etc/skel/.bashrc && \
