@@ -2,7 +2,7 @@ FROM bioperl/bioperl
 
 MAINTAINER Anton Kulaga antonkulaga@gmail.com
 
-ENV VERSION 5.5.0
+ENV VERSION 5.7.1
 
 RUN apt update && \
  apt upgrade -y && \

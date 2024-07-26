@@ -2,7 +2,7 @@ FROM quay.io/comp-bio-aging/hmmer:latest
 
 MAINTAINER Anton Kulaga
 
-ENV BLAST_VERSION="2.12.0"
+ENV BLAST_VERSION="2.16.0"
 ENV BLAST_PLATFORM="x64-linux"
 
 WORKDIR /opt/

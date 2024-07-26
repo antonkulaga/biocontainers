@@ -1,7 +1,7 @@
 FROM quay.io/comp-bio-aging/base:latest
 
 # set the environment variables
-ENV fastp_version 0.23.2
+ENV fastp_version 0.23.4
 
 # run update and install necessary tools
 RUN apt-get update -y && apt-get install -y \
