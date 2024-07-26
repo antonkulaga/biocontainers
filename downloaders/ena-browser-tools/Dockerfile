@@ -4,7 +4,7 @@ MAINTAINER Anton Kulaga <antonkulaga@gmail.com>
 
 WORKDIR /opt
 
-ENV VERSION "1.1.0"
+ENV VERSION "1.7.1"
 ENV FOLDER /opt/enaBrowserTools-$VERSION/python3
 
 WORKDIR /opt
